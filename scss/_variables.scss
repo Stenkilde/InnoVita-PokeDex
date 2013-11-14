@@ -5,17 +5,21 @@
  * @version yyy-mm-dd (Date of latest edit)
  */
 
- /*******************************************/
-/* CONTENTS */
-/*******************************************/
+/*------------------------------------*\
+    $CONTENTS
+\*------------------------------------*/
+
 /*
-* RESET Reset default browser styling
-* SHARED Shared elements across modules and layout
-* MAIN html, body
-* LAYOUT header, footer, wrapper, etc.
+* $VIEWPORT-BREAKPOINTS
+* $FONT-SIZES
 */
 
-  
+
+
+/*------------------------------------*\
+    $VIEWPORT-BREAKPOINTS
+\*------------------------------------*/
+
 // Screen Sizes
 $screen-small: 768px;
 $screen-medium: 1280px;
@@ -31,21 +35,28 @@ $media-landscape: "only screen and (orientation: landscape)";
 $media-portrait: "only screen and (orientation: portrait)";
 $media-facebook-desktop: "only screen and (min-width: #{$screen-facebook-desktop})";
 
-// Typography
+/*------------------------------------*\
+    $FONT-SIZES
+\*------------------------------------*/
+/**
+ * Font-sizes (in ems using emCalc(); function.) Look in _mixins.scss for reference
+ */
+
+
+/**
+ * Base font size used for em referance
+ */
+
 $base-font-size: 100% !default;
 $base-line-height: 150% !default;
 $em-base: 16 !default;
 $text-direction: ltr !default;
-
-$musketregular:		'musketregular', helvetica, arial, sans-serif;
-$musketbold:		'musketbold', helvetica, arial, sans-serif;
-
-//emCalcs go here
+$sans-regular: 'Helvetica', 'Arial', sans-serif;
 
 
-
-
-
+/*------------------------------------*\
+    $GRID-DIRECTION
+\*------------------------------------*/
 // NOTE: No need to change this conditional statement, $text-direction variable controls it all.
 $default-float: left !default;
 $opposite-direction: right !default;
@@ -56,11 +67,3 @@ $opposite-direction: right !default;
   $default-float: right;
   $opposite-direction: left;
 }
-
-// Colour Variables
-
-$main-brand: #00a0a2;
-$secondary-brand: #DD5827;
-
-$main-dark: #272727;
-$secondary-dark: #303030;

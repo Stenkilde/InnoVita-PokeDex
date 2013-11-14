@@ -1,0 +1,21 @@
+.app-pokedex {
+	width: 1024px;
+	margin: 0 auto;
+}
+
+// This code is to reset the stupid li styling // and the a tags inside the li's
+
+li {
+	list-style-type: none;
+	a {
+		color: #000;
+		text-decoration: none;
+		&:hover {
+			color: #ccc;
+		}
+	}
+}
+
+.column {
+	border: solid 5px black;
+}

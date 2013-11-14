@@ -1,0 +1,271 @@
+//
+// Form Variables
+//
+$include-html-form-classes: true !default;
+
+// We use this to set the base for lots of form spacing and positioning styles
+$form-spacing: emCalc(16) !default;
+
+
+$form-label-font-size: emCalc(14) !default;
+$form-label-font-weight: 500 !default;
+$form-label-bottom-margin: emCalc(3) !default;
+
+$fieldset-padding: emCalc(20) !default;
+$fieldset-margin: emCalc(18 0) !default;
+
+$legend-padding: emCalc(0 3) !default;
+
+// We use these to style the prefix and postfix input elements
+$input-prefix-overflow: hidden !default;
+$input-font-size: emCalc(14) !default;
+
+
+// We use these to style the error states for inputs and labels
+$input-error-message-padding: emCalc(6 4) !default;
+$input-error-message-top: 0;
+$input-error-message-font-size: emCalc(12) !default;
+
+//
+// Form Mixins
+//
+
+// We use this mixin to give us form styles for rows inside of forms
+@mixin form-row-base {
+  .row { margin: 0 ((-$form-spacing) / 2);
+
+    .column,
+    .columns { padding: 0 $form-spacing / 2; }
+
+    // Use this to collapse the margins of a form row
+    &.collapse { margin: 0;
+
+      .column,
+      .columns { padding: 0; }
+      input {
+        -moz-border-radius-bottom#{$opposite-direction}: 0;
+        -moz-border-radius-top#{$opposite-direction}: 0;
+        -webkit-border-bottom-#{$opposite-direction}-radius: 0;
+        -webkit-border-top-#{$opposite-direction}-radius: 0;
+      }
+
+    }
+  }
+  input.column,
+  input.columns,
+  textarea.column,
+  textarea.columns { padding-#{$default-float}: $form-spacing / 2; }
+}
+
+// We use this mixin to give all basic form elements their style
+@mixin form-element() {
+  display: block;
+  font-size: $input-font-size;
+  margin: 0 0 $form-spacing 0;
+  padding: $form-spacing / 2;
+  height: ($input-font-size + ($form-spacing * 1.5) - emCalc(1));
+  width: 100%;
+}
+
+// We use this mixin to create form labels
+@mixin form-label($alignment:false, $base-style:true) {
+
+  // Control whether or not the base styles come through.
+  @if $base-style {
+    display: block;
+    margin-bottom: $form-label-bottom-margin;
+  }
+
+  // Alignment options
+  @if $alignment == right {
+    float: none;
+    text-align: right;
+  }
+  @else if $alignment == inline {
+    margin: 0 0 $form-spacing 0;
+    padding: $form-spacing / 2 0;
+  }
+}
+
+// We use this mixin to create postfix/prefix form Labels
+@mixin prefix-postfix-base {
+  display: block;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: $input-prefix-overflow;
+  font-size: $form-label-font-size;
+  height: ($form-label-font-size + ($form-spacing * 1.5) - emCalc(1));
+  line-height: ($form-label-font-size + ($form-spacing * 1.5) - emCalc(1));
+}
+
+// We use this mixin to create prefix label styles
+@mixin prefix($is-button:false) {
+
+  @if $is-button {
+    padding-#{$default-float}: 0;
+    padding-#{$opposite-direction}: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    text-align: center;
+    line-height: emCalc(34);
+  }
+
+}
+
+// We use this mixin to create postfix label styles
+@mixin postfix($is-button:false) {
+
+  @if $is-button {
+    padding-#{$default-float}: 0;
+    padding-#{$opposite-direction}: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    text-align: center;
+    line-height: emCalc(34);
+  }
+
+}
+
+// We use this mixin to style fieldsets
+@mixin fieldset {
+  padding: $fieldset-padding;
+  margin: $fieldset-margin;
+
+  // and legend styles
+  legend {
+    padding: $legend-padding;
+    margin: 0;
+    margin-#{$default-float}: emCalc(-3);
+  }
+}
+
+// We use this mixin to create error message styles
+@mixin form-error-message() {
+  display: block;
+  padding: $input-error-message-padding;
+  margin-top: $input-error-message-top;
+  margin-bottom: $form-spacing;
+}
+
+// Only include these classes if the variable is true, otherwise they'll be left out.
+@if $include-html-form-classes != false {
+  /* Standard Forms */
+  form { margin: 0 0 $form-spacing; }
+
+  /* Using forms within rows, we need to set some defaults */
+  form .row { @include form-row-base; }
+
+  /* Label Styles */
+  label { @include form-label;
+    &.right { @include form-label(right,false); }
+    &.inline { @include form-label(inline,false); }
+    /* Styles for required inputs */
+    small {
+      text-transform: capitalize;
+    }
+  }
+
+  /* Attach elements to the beginning or end of an input */
+  .prefix,
+  .postfix { @include prefix-postfix-base; }
+
+  /* Adjust padding, alignment and radius if pre/post element is a button */
+  .postfix.button { @include postfix(true); }
+  .prefix.button { @include prefix(true); }
+
+
+  /* Separate prefix and postfix styles when on span or label so buttons keep their own */
+  span.prefix,label.prefix {
+    @include prefix();
+  }
+  span.postfix,label.postfix {
+    @include postfix();
+  }
+
+  /* We use this to get basic styling on all basic form elements */
+  input[type="text"],
+  input[type="password"],
+  input[type="date"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="month"],
+  input[type="week"],
+  input[type="email"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="time"],
+  input[type="url"],
+  textarea {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    @include form-element;
+  }
+
+  /* Adjust margin for form elements below */
+  input[type="file"],
+  input[type="checkbox"],
+  input[type="radio"],
+  select {
+    margin: 0 0 $form-spacing 0;
+  }
+
+  /* Normalize file input width */
+  input[type="file"] {
+    width:100%;
+  }
+
+  /* We add basic fieldset styling */
+  fieldset {
+    @include fieldset;
+  }
+
+  /* Error Handling */
+
+  [data-abide] {
+    .error small.error, span.error, small.error {
+      @include form-error-message;
+    }
+    span.error, small.error { display: none; }
+  }
+  span.error, small.error {
+    @include form-error-message;
+  }
+  .error {
+    input,
+    textarea,
+    select {
+      margin-bottom: 0;
+    }
+
+    label,
+    label.error {
+
+    }
+
+    > small,
+    small.error {
+      @include form-error-message;
+    }
+
+    span.error-message {
+      display: block;
+    }
+  }
+
+  input.error,
+  textarea.error {
+    margin-bottom: 0;
+  }
+
+  .error select {
+  }
+
+  label.error {  }
+
+}
