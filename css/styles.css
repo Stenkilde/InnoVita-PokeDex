@@ -1854,13 +1854,29 @@ a {
     opacity: .4; }
 
 .app-pokedex {
-  width: 1024px;
+  width: 100%;
+  max-width: 1024px;
   margin: 0 auto; }
 
-li {
-  list-style-type: none; }
-  li a {
-    color: #000;
-    text-decoration: none; }
-    li a:hover {
-      color: #ccc; }
+.sprite-module {
+  height: 200px;
+  background-color: pink; }
+
+.information-module {
+  line-height: 200px;
+  background-color: pink; }
+
+.map-module {
+  height: 200px;
+  background-color: pink; }
+
+.pokedex {
+  max-height: 600px;
+  overflow: scroll; }
+  .pokedex li {
+    list-style-type: none; }
+    .pokedex li a {
+      color: #000;
+      text-decoration: none; }
+      .pokedex li a:hover {
+        color: #ccc; }

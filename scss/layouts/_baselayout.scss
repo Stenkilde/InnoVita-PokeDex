@@ -1,17 +1,37 @@
 .app-pokedex {
-	width: 1024px;
+	width: 100%;
+	max-width: 1024px;
 	margin: 0 auto;
+}
+
+.sprite-module {
+	height: 200px;
+	background-color: pink;
+}
+
+.information-module {
+	line-height: 200px;
+	background-color: pink;
+}
+
+.map-module {
+	height: 200px;
+	background-color: pink;
 }
 
 // This code is to reset the stupid li styling // and the a tags inside the li's
 
-li {
-	list-style-type: none;
-	a {
-		color: #000;
-		text-decoration: none;
-		&:hover {
-			color: #ccc;
+.pokedex {
+	max-height: 600px;
+	overflow: scroll;
+	li {
+		list-style-type: none;
+		a {
+			color: #000;
+			text-decoration: none;
+			&:hover {
+				color: #ccc;
+			}
 		}
 	}
 }
